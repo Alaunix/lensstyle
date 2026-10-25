@@ -1,0 +1,6 @@
+import { Button } from "../components/UI";
+export default function Photographer({ bookings, updateStatus, logout }) {
+  return <section><div className="flex flex-wrap items-end justify-between gap-4"><div><p className="text-xs font-bold tracking-[0.3em] text-red-500">PHOTOGRAPHER</p><h2 className="mt-3 text-4xl font-black">Мои заказы</h2></div><Button secondary onClick={logout}>Выйти</Button></div>
+    <div className="mt-8 grid gap-4">{bookings.length === 0 && <p className="text-zinc-500">Заказов пока нет.</p>}{bookings.map((item) => <div key={item.id} className="rounded-2xl border border-zinc-800 bg-zinc-900 p-5"><div className="flex flex-wrap justify-between gap-4"><div><h3 className="font-bold">{item.serviceName}</h3><p className="mt-2 text-sm text-zinc-400">{item.date} · {item.time}</p><p className="mt-1 text-sm text-zinc-400">{item.fio}</p><p className="mt-1 text-xs text-zinc-500">{item.phone} · {item.telegram}</p></div><div className="flex gap-2"><button onClick={() => updateStatus(item.id, "CONFIRMED")} className="rounded-lg bg-green-700 px-3 py-2 text-xs">Подтвердить</button><button onClick={() => updateStatus(item.id, "CANCELLED")} className="rounded-lg bg-zinc-800 px-3 py-2 text-xs">Отменить</button></div></div></div>)}</div>
+  </section>;
+}
